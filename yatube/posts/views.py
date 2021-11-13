@@ -4,18 +4,18 @@ from .models import Post, Group
 
 
 def index(request):
-    posts = Post.objects.order_by('-pub_date')[:10]
+    posts = Post.objects.all()[:10]
     context = {
-        'posts': posts,
+        "posts": posts,
     }
-    return render(request, 'posts/index.html', context)
+    return render(request, "posts/index.html", context)
 
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    posts = Post.objects.filter(group=group).order_by('-pub_date')[:10]
+    posts = group.posts.all()
     context = {
-        'group': group,
-        'posts': posts,
+        "group": group,
+        "posts": posts,
     }
-    return render(request, 'posts/group_list.html', context)
+    return render(request, "posts/group_list.html", context)
