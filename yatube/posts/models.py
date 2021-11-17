@@ -10,7 +10,7 @@ class Group(models.Model):
     description = models.TextField("Описание")
 
     def __str__(self) -> str:
-        return (self.title)
+        return self.title
 
 
 class Post(models.Model):
@@ -21,6 +21,9 @@ class Post(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE,
                               related_name="posts", verbose_name="Группа",
                               blank=True, null=True)
+
+    def __str__(self) -> str:
+        return self.text
 
 
 class Meta:
