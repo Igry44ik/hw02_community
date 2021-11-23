@@ -10,7 +10,7 @@
     {% block content %}
       <h1> {% block header %} {{ group }} {% endblock %} </h1>
       <div class="container py-3">
-      {% for post in posts %}
+      {% for post in page_obj %}
       <ul>
         <li>
           Автор: {{ post.author.get_full_name }}
@@ -22,7 +22,8 @@
       <p> {{ post.text }} </p>
       {% if not forloop.last %}<hr>{% endif %}
       {% endfor %}
-      {% endblock %}
+      {% include "posts/includes/paginator.html" %}
       </div>
+    {% endblock %}
   </main>
 </body>
